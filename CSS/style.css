@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto+Slab&family=Roboto:wght@100&family=Varela+Round&display=swap');
 *,
 *::after,
 *::before{
@@ -51,4 +52,16 @@ background-position: 100%
     width: 300px;
     height: auto
 }
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto+Slab&family=Roboto:wght@100&family=Varela+Round&display=swap');
+/*add to cart*/
+.icon-link{
+    position: fixed;
+    right: 50px;
+background-color: red;
+}
+.checkout{
+    width: 250px;
+}
+footer{
+    margin-bottom: 0;
+}
+
