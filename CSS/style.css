@@ -6,7 +6,10 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
-body{
+::-webkit-scrollbar{
+    display: none;
+}
+:is(body){
  font-family: 'DM Serif Display', serif;
  
 }
@@ -53,15 +56,15 @@ background-position: 100%
     height: auto
 }
 /*add to cart*/
-.icon-link{
-    position: fixed;
-    right: 50px;
-background-color: red;
-}
+
 .checkout{
     width: 250px;
 }
-footer{
+:is(footer){
     margin-bottom: 0;
+}
+/*checkout*/
+h4{
+    text-decoration: underline;
 }
 
