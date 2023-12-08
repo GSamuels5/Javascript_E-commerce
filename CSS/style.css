@@ -67,11 +67,20 @@ background-position: 100%
 h4{
     text-decoration: underline;
 }
-/*image*/
+/*image admin page*/
 #newImage{
     width: 10rem;
     height: 10rem;
 }
 label{
     justify-items: end;
+}
+.bi-facebook, .bi-linkedin:hover{
+color: blue;
+}
+.bi-instagram:hover{
+    color: rgb(255, 0, 85);
+}
+.card{
+    width: 18rem;
 }
