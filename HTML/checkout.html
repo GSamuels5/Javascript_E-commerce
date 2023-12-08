@@ -12,11 +12,15 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-<link rel="shortcut icon" href="https://i.postimg.cc/6TJFkvdF/wstock-1.jpg" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="https://i.postimg.cc/6TJFkvdF/wstock-1.jpg"
+      type="image/x-icon"
+    />
     <title>Checkout</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark-subtle">
       <div class="container-fluid">
         <img
           src="https://i.postimg.cc/wMSknHby/logo.png"
@@ -82,20 +86,22 @@
         <button clear-items>Clear all</button>
       </div>
       <div class="paynow m-4">
-       <form action="">
-            <h4>Pay via EFT card</h4>
-            <label for="name">Enter Your Name:</label>
-            <input type="text" placeholder="enter your name" required /><br />
-            <label for="number">Enter your card details</label>
-            <input type="number" placeholder="enter your card number" maxlength="16" required><br/>
+        <form action="">
+          <h4>Pay via EFT card</h4>
+          <label for="name">Enter Your Name:</label>
+          <input type="text" placeholder="enter your name" required /><br />
+          <label for="number">Enter your card details</label>
+          <input
+            type="number"
+            placeholder="enter your card number"
+            maxlength="16"
+            required
+          /><br />
 
-            
-            <button type="reset" pay-data>Pay</button>
-          </form>
-          </div>
-      
-        
-      
+          <button type="reset" pay-data>Pay</button>
+        </form>
+      </div>
+
       <h4 data-display></h4>
     </main>
     <footer class="container-fluid fixed-bottom mb-1 bg-black text-bg-dark">

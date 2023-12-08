@@ -74,8 +74,8 @@ function displayProducts() {
         </div>`
         });
 
-    }else{
-        allProducts.innerHTML= `<h1>No products found</h1>`
+    } else {
+        allProducts.innerHTML = `<h1>No products found</h1>`
     }
     spinner.classList.add('d-none')
 }
@@ -126,7 +126,7 @@ inputSearch.addEventListener('keyup', () => {
     } catch (e) {
         `product not found`
     }
-spinner.classList.add('d-none')
+    spinner.classList.add('d-none')
 })
 
 
@@ -153,7 +153,7 @@ sortBtn.addEventListener('click',
 //onclick add objects to new array 
 //create variable 
 function cartItems(item) {
-    if(item) {
+    if (item) {
         cartProducts.push(item)
         localStorage.setItem('cart', JSON.stringify(cartProducts))
     }

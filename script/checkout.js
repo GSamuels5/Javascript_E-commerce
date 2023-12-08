@@ -16,7 +16,7 @@ function displayItems() {
 </tr>
 `;
             total += parseFloat(purchase.price) * parseFloat(purchase.quantity)
-            if(isNaN(total)){
+            if (isNaN(total)) {
                 total = 0;
             }
         });
@@ -53,22 +53,23 @@ checkoutData.addEventListener('keyup', (event) => {
     }
 })
 updateTotal()
+
 function updateTotal() {
     let total = 0
     itemCheck.forEach((purchase) => {
         total += parseFloat(purchase.price) * parseFloat(purchase.quantity)
     })
-    
-    
-document.getElementById('total').innerText = total
-displayItems()
+
+
+    document.getElementById('total').innerText = total
+    displayItems()
 }
 
 
 //create pay buttonew
 let payButton = document.querySelector('[pay-data]')
 
-payButton.addEventListener('click', ()=> {
+payButton.addEventListener('click', () => {
 
     alert('thank your for your purchase');
 })
