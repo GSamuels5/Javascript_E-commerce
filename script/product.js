@@ -52,6 +52,7 @@ let cartProducts = JSON.parse(localStorage.getItem('cart')) || []
 
 function displayProducts() {
     allProducts.innerHTML = "";
+    const loading = document.querySelector('#spinner')
     if (products) {
         products.forEach((product) => {
             allProducts.innerHTML +=
@@ -62,7 +63,7 @@ function displayProducts() {
         <div class="card-body">
          
           <p class="card-text"> price: R${product.price}</p>
-          <p>Year: ${product.year}</p>
+          <p>Make: ${product.make}</p>
           <img src="${product.image}" alt="antique" loading="lazy" class="card-img">
           </div>
           <div class="card-footer">
@@ -73,7 +74,10 @@ function displayProducts() {
         </div>`
         });
 
+    }else{
+        allProducts.innerHTML= `<h1>No products found</h1>`
     }
+    spinner.classList.add('d-none')
 }
 displayProducts()
 //create search input
@@ -83,6 +87,8 @@ let inputSearch = document.querySelector('[search-product]')
 //addevent
 
 inputSearch.addEventListener('keyup', () => {
+    let spinner = document.getElementById('spinner')
+    spinner.classList.remove('d-none')
     try {
         let SearchItem = products.filter(
             prod => {
@@ -101,7 +107,7 @@ inputSearch.addEventListener('keyup', () => {
                     <div class="card-body">
                      
                       <p class="card-text"> price: R${item.price}</p>
-                      <p>Year: ${item.year}</p>
+                      <p>Make: ${item.make}</p>
                       <img src="${item.image}" alt="antique" loading="lazy" class="card-img">
                       </div>
                       <div class="card-footer">
@@ -120,7 +126,7 @@ inputSearch.addEventListener('keyup', () => {
     } catch (e) {
         `product not found`
     }
-
+spinner.classList.add('d-none')
 })
 
 
@@ -151,4 +157,5 @@ function cartItems(item) {
         cartProducts.push(item)
         localStorage.setItem('cart', JSON.stringify(cartProducts))
     }
+    alert(`item added to cart`)
 }

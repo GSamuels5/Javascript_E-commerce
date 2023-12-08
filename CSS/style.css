@@ -9,6 +9,11 @@ box-sizing: border-box;
 ::-webkit-scrollbar{
     display: none;
 }
+body{
+    margin: 0;
+    padding: 0;
+    
+}
 :is(body){
  font-family: 'DM Serif Display', serif;
  
@@ -16,8 +21,22 @@ box-sizing: border-box;
 /* home */
 .nav-item{
     padding: 2px;
-    border: 1px 1px 1px 1 px solid;
-    background-color: blue
+    
+}
+#align-f{
+    
+    margin-top: auto;
+    text-align: center;
+    padding: 10px 0;
+}
+.nav-item:hover{
+
+    color: rgb(0, 229, 255);
+    text-decoration: underline white;
+}
+.navbar-nav{
+    font-weight: bolder;
+    font-size: larger;
 }
 #te{
     font-size: 75px;
@@ -26,18 +45,18 @@ box-sizing: border-box;
 
 }
 .animation{
-    width: 100%;
+    width: 50%;
     height: 100vh;
     background-image: url("https://i.postimg.cc/0y0DY5NV/pngtree-antique-clock-face-without-hands-retro-png-image-10092194.png");
     background-repeat: no-repeat;
-    animation: animation 5s;
+    animation:  rotateAnimation 10s infinite linear;
 }
-@keyframes animation{
+@keyframes rotateAnimation{
    0%{
-    background-position: 0 
+    transform: rotate(0deg) 
    }
    100%{
-background-position: 100%
+transform: rotate(360deg)
    }
 /*About*/
 
@@ -83,4 +102,18 @@ color: blue;
 }
 .card{
     width: 18rem;
+}
+@media (300px<= width<=900px){
+    .animation{
+        width: 30%;
+        margin-left: 20%;
+    }
+#product{
+    display:grid;
+    grid-template-rows: auto;
+}
+/* products */
+#product{
+    flex-direction: column;
+}
 }
