@@ -22,3 +22,28 @@ time.innerHTML +=
 
 </tr>`
 })
+//creating a function to pull modal data
+document.addEventListener('DOMContentLoaded',()=>{
+
+    //create a variable
+    let itembtn = document.querySelector('#newItem')
+    let newMake = document.querySelector('#make')
+    let newType = document.querySelector('#id')
+    let newURL = document.querySelector('#url')
+    let newPrice = document.querySelector('#price')
+    /*add click event
+    to allow input data to display in localstorage of cart
+    */
+    itembtn.addEventListener('click',()=>{
+    //get values for inputs
+    let makeInput = newMake.value.trim()
+    let typeInput = newType.value.trim()
+    let priceInput = parseFloat(newPrice.value)
+    let urlInput = newURL.value.trim()
+//go through input values and check if empty
+
+    }
+    
+    )
+})
+

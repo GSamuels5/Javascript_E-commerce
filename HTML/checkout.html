@@ -82,29 +82,20 @@
         <button clear-items>Clear all</button>
       </div>
       <div class="paynow m-4">
-        <form
-          action="https://formspree.io/f/moqogewk"
-          method="post"
-          id="myForm"
-        >
-          <div class="mail d-inline-block justify-content-around">
-            <h4>Pay via E-mail</h4>
+       <form action="">
+            <h4>Pay via EFT card</h4>
             <label for="name">Enter Your Name:</label>
             <input type="text" placeholder="enter your name" required /><br />
-            <label for="email">Enter Your e-mail:</label>
-            <input
-              type="email"
-              name="email"
-              id="Email"
-              class="m-1"
-              placeholder="enter your email"
-              required
-            /><br />
-            <button type="submit">Submit</button>
+            <label for="number">Enter your card details</label>
+            <input type="number" placeholder="enter your card number" maxlength="16" required><br/>
+
+            
+            <button type="reset" pay-data>Pay</button>
+          </form>
           </div>
-        </form>
-        <button  pay-data>Pay</button>
-      </div>
+      
+        
+      
       <h4 data-display></h4>
     </main>
     <footer class="container-fluid fixed-bottom mb-1 bg-black text-bg-dark">
