@@ -14,7 +14,7 @@ console.log(watch);
 time.innerHTML +=
 ` <tr>
 <td>${watches.make}</td>
-<td><img href='${watches.image}'</></td>
+<td class='image' ><img src='${watches.image}'id='newImage'></td>
 <td>${watches.type}</td>
 <td>R ${watches.price}</td>
 <td><button>Edit</button>

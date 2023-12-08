@@ -67,4 +67,11 @@ background-position: 100%
 h4{
     text-decoration: underline;
 }
-
+/*image*/
+#newImage{
+    width: 10rem;
+    height: 10rem;
+}
+label{
+    justify-items: end;
+}
