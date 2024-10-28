@@ -10,30 +10,119 @@
      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>About</title>
+   <style>
+    @keyframes slideIn{
+      0% {
+        transform: translateX(-100%);
+        opacity: 0;
+      } 100%{
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    .about{
+      opacity: 0;
+      animation: slideIn 1s ease-out forwards;
+    }
+    .clock {
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    margin-left:50% ;
+    margin-right:50% ;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hour hand */
+  .hour, .minute, .second {
+    position: absolute;
+    bottom: 50%;
+    background-color: black;
+    transform-origin: bottom;
+  }
+
+  .hour {
+    width: 4px;
+    height: 50px;
+    animation: rotateHour 43200s infinite linear;
+  }
+
+  /* Minute hand */
+  .minute {
+    width: 3px;
+    height: 70px;
+    animation: rotateMinute 3600s infinite linear;
+  }
+
+  /* Second hand */
+  .second {
+    width: 2px;
+    height: 90px;
+    background-color: red;
+    animation: rotateSecond 60s infinite linear;
+  }
+
+  /* Rotations for each hand */
+  @keyframes rotateHour {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes rotateMinute {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes rotateSecond {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+   </style>
 </head>
 <body>
 <header>
   <div id="navbar"></div>
 </header>
-      <main class="container-fluid">
-        <section class="container">
+      
+        <section class="about">
 
           <div class="row">
               <h1 id="te">
           About
       </h1>
       </div>
-      <p class="paragraph"> I started my company on the 23rd of October 2023.
-          My passion for old and new authentic watches made me start my journey in selling art of time.
-           The reason I call it the art of time is because we need time to know hour of the day it is.
-           I hope you find your time of day look.</p>
+      <p class="paragraph">I founded my company on October 23, 2023, 
+        driven by my passion for both vintage and contemporary authentic watches.
+         I refer to this endeavor as "The Art of Time" because understanding the passage 
+         of time enriches our daily lives. I hope you discover the perfect piece that resonates with your sense of time.</p>
+        </section>
+        <div class="clock">
+          <div class="hour"></div>
+          <div class="minute"></div>
+          <div class="second"></div>
+        </div>
+        <section>
+          <div id="footer"></div>
         </section>
 
-
-      </main>
-      <footer class="container-fluid mb-1 bg-black text-bg-dark fixed-bottom">
-        G-watches&copy; <span id="footEdit"></span>
-      </footer>
+      
+    
+      <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer").innerHTML = data;
+            })
+            .catch(error =>{
+                console.eror("Error loading footer:", error)
+            })
+        })
+    </script>
     <script>
       // 
       // 
