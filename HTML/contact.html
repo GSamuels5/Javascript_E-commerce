@@ -10,6 +10,11 @@
      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>Contact</title>
+    <style>
+      .social{
+        height: 51.4%;
+      }
+    </style>
 </head>
 <body>
   <header>
@@ -17,18 +22,18 @@
   </header>
   <main class="container py-5">
     <div class="row mb-5 text-center">
-        <div class="col-md-6">
-            <h1 class="mb-4">Contact Us</h1>
+        <div class="col-12">
+            <h1 class="mb-4 text-center" id="te">Contact Us</h1>
             <p class="text-muted">We're here to help! Reach out to us via the form below or through our contact details and socials.</p>
         </div>
     </div>
 
     <div class="row">
         <!-- Contact Form -->
-        <div class="col-3 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-body p-4">
-                    <h3 class="card-title mb-4">Send Us a Message</h3>
+        <div class="col mb-4">
+            <div class="card w-100 shadow-sm">
+                <div class="card-body p-6 mx-3">
+                    <h3 class="card-title mb-4 ">Send Us a Message</h3>
                     <form action="https://formspree.io/f/moqogewk" method="post" id="myForm">
                         <div class="mb-3">
                             <label for="firstName" class="form-label">First Name</label>
@@ -46,7 +51,8 @@
                             <label for="message" class="form-label">Message</label>
                             <textarea class="form-control" id="message" name="message" rows="4" placeholder="How can we help you?" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        <button type="submit" class="btn btn-primary w-100 mb-2">Send Message</button>
+                        <button type="reset"  class="btn btn-secondary w-100">clear</button>
                     </form>
                 </div>
             </div>
@@ -54,20 +60,20 @@
 
         <!-- Contact Information and CEO Details -->
         <div class="col-md-6">
-            <div class="card shadow-sm mb-4">
+            <div class="card w-100 shadow-sm mb-4">
                 <div class="card-body p-4">
                     <h3 class="card-title mb-4">Contact Information</h3>
                     <div class="mb-4">
                         <h5>CEO Contact</h5>
                         <p class="mb-2"><strong>Name:</strong> Ghamzah Samuels</p>
-                        <p class="mb-2"><strong>Phone:</strong> <a href="tel:0785945217" class="text-decoration-none">078 594 5217</a></p>
+                        <p class="mb-2"><strong>Phone:</strong> <a href="tel:0622989711" class="text-decoration-none">062 298 9711</a></p>
                         <p class="mb-2"><strong>Email:</strong> <a href="mailto:ghamzahsamuels23@gmail.com" class="text-decoration-none">ghamzahsamuels23@gmail.com</a></p>
                     </div>
                 </div>
             </div>
 
             <!-- Social Media Links -->
-            <div class="card shadow-sm">
+            <div class="card w-100 social shadow-sm">
                 <div class="card-body p-4">
                     <h3 class="card-title mb-4">Connect With Us</h3>
                     <div class="d-flex flex-column gap-3">
