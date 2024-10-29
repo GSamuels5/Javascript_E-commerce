@@ -1,84 +1,159 @@
-//create modal variable
-// const myModal = document.getElementById('myModal')
-// const myInput = document.getElementById('myInput')
-/*create a sort
-let sortNew =
-*/
-let allItems = JSON.parse(localStorage.getItem('products'))
-
-console.log(allItems);
-Object.keys(allItems).forEach((watch) => {
-    let watches = allItems[watch]
-    let time = document.querySelector('[new-data]')
-    console.log(watch);
-    time.innerHTML +=
-        ` <tr>
-<td>${watches.make}</td>
-<td class='image' ><img src='${watches.image}'id='newImage'></td>
-<td>${watches.type}</td>
-<td>R ${watches.price}</td>
-<td><button id='editing' >Edit</button>
-<button id='delete' >Delete</button></td>
-
-</tr>`
-})
-//creating a function to pull modal data
 document.addEventListener('DOMContentLoaded', () => {
+    // Get DOM elements
+    const tableBody = document.querySelector('[new-data]');
+    const addItemBtn = document.querySelector('#newItem');
+    const makeInput = document.querySelector('#make');
+    const typeInput = document.querySelector('#type');
+    const urlInput = document.querySelector('#url');
+    const priceInput = document.querySelector('#price');
+    const sortBtn = document.querySelector('button:first-of-type');
 
-    //create a variable
-    let itembtn = document.querySelector('#newItem')
-    let newMake = document.querySelector('#make')
-    let newType = document.querySelector('#id')
-    let newURL = document.querySelector('#url')
-    let newPrice = document.querySelector('#price')
-    //get local products
-    let products = JSON.parse(localStorage.getItem('products')) || []
-    /*add click event
-    to allow input data to display in localstorage of cart
-    */
-    itembtn.addEventListener('click', () => {
-            //get values for inputs
-            let makeInput = newMake.value.trim()
-            let typeInput = newType.value.trim()
-            let priceInput = parseFloat(newPrice.value)
-            let urlInput = newURL.value.trim()
-            //go through input values and check if empty
-            if (makeInput && typeInput && !isNaN(priceInput) && urlInput) {
-                let adminItems = {
-                    id: products.length + 1,
-                    make: makeInput,
-                    type: typeInput,
-                    price: priceInput,
-                    image: urlInput,
+    let products = [];
+
+    // Fetch products from JSON file
+    function fetchProducts() {
+        fetch('../products.json')  // Adjust path based on your file structure
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-                products.push(adminItems)
-                localStorage.setItem('products', JSON.stringify(products))
-                displayProducts()
+                return response.json();
+            })
+            .then(data => {
+                products = data;
+                // Store in localStorage for editing functionality
+                localStorage.setItem('products', JSON.stringify(products));
+                displayProducts();
+            })
+            .catch(error => {
+                console.error('Error loading products:', error);
+                // Try to load from localStorage as fallback
+                const storedProducts = localStorage.getItem('products');
+                if (storedProducts) {
+                    products = JSON.parse(storedProducts);
+                    displayProducts();
+                }
+            });
+    }
 
-                let modal = document.getElementById('exampleModal')
-                let modalInstance = bootstrap.Modal.getInstance(modal)
-                modalInstance.hide()
+    // Display products function
+    function displayProducts() {
+        if (!tableBody) return;
+        
+        tableBody.innerHTML = '';
+        products.forEach((product, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${product.make}</td>
+                <td class='image'>
+                    <img src='${product.image}' alt='${product.make}' style='max-width: 100px;'>
+                </td>
+                <td>${product.type}</td>
+                <td>R ${product.price.toLocaleString()}</td>
+                <td>
+                    <button class='btn btn-warning btn-sm edit-btn' data-index='${index}'>Edit</button>
+                    <button class='btn btn-danger btn-sm delete-btn' data-index='${index}'>Delete</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
 
-                newMake.value = ''
-                newType.value = ''
-                newPrice.value = ''
-                newURL.value = ''
-                alert('New product addded succesfully')
+        attachButtonListeners();
+    }
+
+    // Attach event listeners to edit and delete buttons
+    function attachButtonListeners() {
+        // Edit buttons
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const index = e.target.dataset.index;
+                const product = products[index];
+                
+                makeInput.value = product.make;
+                typeInput.value = product.type;
+                urlInput.value = product.image;
+                priceInput.value = product.price;
+
+                addItemBtn.textContent = 'Update Product';
+                addItemBtn.dataset.editIndex = index;
+                
+                const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                modal.show();
+            });
+        });
+
+        // Delete buttons
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (confirm('Are you sure you want to delete this product?')) {
+                    const index = e.target.dataset.index;
+                    products.splice(index, 1);
+                    localStorage.setItem('products', JSON.stringify(products));
+                    displayProducts();
+                }
+            });
+        });
+    }
+
+    // Add/Edit product
+    addItemBtn.addEventListener('click', () => {
+        const makeValue = makeInput.value.trim();
+        const typeValue = typeInput.value.trim();
+        const priceValue = parseFloat(priceInput.value);
+        const urlValue = urlInput.value.trim();
+
+        if (makeValue && typeValue && !isNaN(priceValue) && urlValue) {
+            const productData = {
+                id: products.length + 1,
+                make: makeValue,
+                type: typeValue,
+                price: priceValue,
+                image: urlValue,
+                year: new Date().getFullYear() // Adding current year as default
+            };
+
+            const editIndex = addItemBtn.dataset.editIndex;
+            
+            if (editIndex !== undefined) {
+                // Update existing product
+                products[editIndex] = {
+                    ...products[editIndex],
+                    ...productData,
+                    id: products[editIndex].id // Preserve original ID
+                };
+                delete addItemBtn.dataset.editIndex;
+                addItemBtn.textContent = 'Save changes';
             } else {
-                alert("Please fill in all fields!")
+                // Add new product
+                products.push(productData);
             }
+
+            // Save to localStorage
+            localStorage.setItem('products', JSON.stringify(products));
+            displayProducts();
+
+            // Clear form and close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+            modal.hide();
+            
+            // Reset form
+            makeInput.value = '';
+            typeInput.value = '';
+            priceInput.value = '';
+            urlInput.value = '';
+
+            alert(editIndex !== undefined ? 'Product updated successfully!' : 'New product added successfully!');
+        } else {
+            alert('Please fill in all fields correctly!');
         }
+    });
 
-    )
-})
-/*edit button function*/
-let editBtn = document.querySelector('#editing')
-editBtn.addEventListener('click', () => {
-    //declare a variable to acces local strorage and edit product from display
+    // Sort functionality
+    sortBtn.addEventListener('click', () => {
+        products.sort((a, b) => a.price - b.price);
+        displayProducts();
+    });
 
-})
-/*delete button function*/
-let deleteBtn = document.querySelector('#delete')
-deleteBtn.addEventListener('click', () => {
-    //declare a variable to acces local strorage and edit product from display
-})
+    // Initial fetch of products
+    fetchProducts();
+});
