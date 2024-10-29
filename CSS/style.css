@@ -9,10 +9,14 @@ box-sizing: border-box;
 ::-webkit-scrollbar{
     display: none;
 }
+.contact{
+    font-weight: 600;
+    font-size: 20px;
+}
+
 body{
     margin: 0;
     padding: 0;
-    
 }
 :is(body){
  font-family: 'DM Serif Display', serif;
@@ -79,8 +83,9 @@ transform: rotate(360deg)
 .checkout{
     width: 250px;
 }
-:is(footer){
-    margin-bottom: 0;
+footer{
+    padding-top: 20px;
+    padding-bottom: 75px;
 }
 /*checkout*/
 h4{
